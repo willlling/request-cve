@@ -13,6 +13,7 @@ def request_cve(keyword, filename):
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36"
     }
 
+    print("Please wait patiently...")
     # get请求，传入参数，返回结果集
     resp = requests.get(url, headers=headers)
     # 将结果集的文本转化为树的结构
@@ -35,8 +36,9 @@ def request_cve(keyword, filename):
             f.write(cve + "\n")
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         print("usage: python request_cve.py keyword filename")
+        sys.exit(1)
     keyword = sys.argv[1]
     filename = sys.argv[2]
     request_cve(keyword, filename)
